@@ -6,6 +6,7 @@
 <title>Revision Platform for W01 — Award in General Insurance</title>
 <meta name="description" content="Revision platform for W01 Award in General Insurance: ten topics with flashcards, quizzes, sorters and printable fact sheets.">
 <meta name="theme-color" content="#080B16">
+<script>try{if(localStorage.getItem('ficTheme')==='light'){document.documentElement.classList.add('light-pre')}}catch(e){}</script>
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -123,9 +124,9 @@ button:focus-visible{outline:2.5px solid var(--blue);outline-offset:2px;border-r
 .ttile:hover{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 14px 34px var(--shadow),0 0 22px rgba(201,162,63,.2)}
 .ttile .in{padding:15px 16px 16px}
 .ttile .tno{font:700 10.5px var(--mono);background:var(--grad);color:#081021;border-radius:6px;padding:3px 8px;letter-spacing:.08em;display:inline-block;margin-bottom:8px}
-.ttile h3{font:700 16.5px var(--disp);line-height:1.18;color:var(--cream);margin-bottom:6px}
-.ttile .td{font-size:12px;color:var(--ink2);line-height:1.5}
-.ttile .tm{font:500 9px var(--mono);letter-spacing:.14em;color:var(--blue);margin-top:9px;text-transform:uppercase}
+.ttile h3{font:700 16.5px var(--disp);line-height:1.18;color:#FFFFFF;margin-bottom:6px}
+.ttile .td{font-size:12px;color:#E2E6F0;line-height:1.5}
+.ttile .tm{font:500 9px var(--mono);letter-spacing:.14em;color:#E7C766;margin-top:9px;text-transform:uppercase}
 .ttile.done{border-color:rgba(52,211,153,.5)}
 .ttile.done .tno{background:linear-gradient(180deg,#7BE2BB 0%,#34D399 100%)}
 .ttile .doneb{position:absolute;top:12px;right:12px;font:600 8.5px var(--mono);letter-spacing:.12em;
@@ -297,6 +298,74 @@ footer{text-align:center;font:500 10.5px var(--mono);color:var(--ink2);margin-to
 .fpk{font:600 10px var(--mono);letter-spacing:.26em;text-transform:uppercase;color:var(--blue)}
 .fph{font:700 clamp(21px,5.6vw,30px) var(--hero);line-height:1.18;margin:10px 0 10px;background:linear-gradient(110deg,#F4ECD8 28%,#E7C766 72%,#C9A23F);-webkit-background-clip:text;background-clip:text;color:transparent}
 .fps{font-size:13.5px;line-height:1.65;color:var(--ink2);max-width:56ch}
+/* ============ LIGHT MODE ============ */
+html.light-pre body,body.light{
+  --bg:#F4ECD8;
+  --card:rgba(27,42,74,.05);
+  --card2:rgba(27,42,74,.09);
+  --ink:#1B2A4A;
+  --ink2:#4A5468;
+  --line:rgba(27,42,74,.14);
+  --line2:rgba(201,162,63,.55);
+  --shadow:rgba(27,42,74,.18);
+  --paper:rgba(255,255,255,.6);
+}
+html.light-pre body::before,body.light::before{
+  background:radial-gradient(46% 40% at 50% -6%,rgba(201,162,63,.28),transparent 70%),
+             radial-gradient(52% 46% at 50% 108%,rgba(27,42,74,.18),transparent 72%);
+}
+body.light .bd{color:#2A3856}
+body.light .bd li:before{color:#7A5E14}
+body.light .note{color:#1F6549;background:rgba(52,211,153,.08)}
+body.light .opt{color:#1B2A4A}
+body.light .opt .let{color:#7A5E14}
+body.light .opt.right{color:#15543C;background:rgba(52,211,153,.18)}
+body.light .opt.wrong{color:#8A1F2A;background:rgba(229,72,77,.12)}
+body.light .opt.right .let{color:#15543C}
+body.light .opt.wrong .let{color:#8A1F2A}
+body.light .explain{color:#5C4308;background:rgba(231,199,102,.28);border-left-color:#A07E22}
+body.light .b-good{color:#15543C}
+body.light .b-bad{color:#8A1F2A}
+body.light .btn{color:#1B2A4A}
+body.light .ghost:hover{background:rgba(27,42,74,.06)}
+body.light .back{color:#1B2A4A;background:rgba(255,255,255,.7);border-color:rgba(201,162,63,.55)}
+body.light .back:hover{background:rgba(255,255,255,.95)}
+body.light .brand .k{color:#4A5468}
+body.light .brand .t{background:linear-gradient(110deg,#1B2A4A 30%,#7A5E14 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.light .fph{background:linear-gradient(110deg,#1B2A4A 30%,#7A5E14 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.light .fpk{color:#7A5E14}
+body.light .fps{color:#3F4A60}
+body.light .tag{color:#7A5E14}
+body.light .tile .eb,body.light .tile.facts .eb{color:#7A5E14}
+body.light .tile h3{color:#1B2A4A}
+body.light .tile .d{color:#4A5468}
+body.light .tile .m{color:#4A5468}
+body.light .stat .n{background:none;-webkit-background-clip:unset;background-clip:unset;color:#1B2A4A;-webkit-text-fill-color:#1B2A4A}
+body.light .stat .l{color:#4A5468}
+body.light .result .big{background:linear-gradient(110deg,#1B2A4A 30%,#7A5E14 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.light .seclbl{color:#4A5468}
+body.light .meta,body.light .lvlmeta{color:#4A5468}
+body.light .stamp{background:rgba(244,236,216,.92);color:#1F6549}
+body.light .stamp.red{color:#8A1F2A}
+body.light .stamp.blue{color:#7A5E14;border-color:#7A5E14}
+body.light footer{color:#4A5468}
+body.light .tabs{background:#FFFBEF;border-color:rgba(201,162,63,.7)}
+body.light .rlbl{color:#4A5468}
+body.light .rlbl:hover{color:#1B2A4A}
+/* Dark-on-dark fixes: containers that keep dark backgrounds in light mode */
+body.light .tsitem{color:#F0EBDC}
+body.light .tsitem .tsitt{color:#FFFFFF}
+body.light .tsitem .tsisb{color:#B8BFD2}
+body.light .scoresec .stat .n{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+body.light .scoresec .stat .l{color:#9AA2BC}
+body.light .toast{color:#F0EBDC}
+/* Theme toggle button */
+.themebtn{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line2);
+  background:var(--card);color:var(--ink);font-size:17px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);transition:.18s}
+.themebtn:hover{background:var(--card2);transform:rotate(18deg)}
+.themebtn:active{transform:scale(.9)}
+
 @media print{
   body{background:#fff}
   body::before,.fp::after{display:none!important}
@@ -317,6 +386,7 @@ footer{text-align:center;font:500 10.5px var(--mono);color:var(--ink2);margin-to
       <div class="t">Revision Platform</div>
     </div>
     <div class="xpill" id="xpill">SCORE: <b>0</b> PTS = FAIR</div>
+    <button class="themebtn no-print" id="themeBtn" aria-label="Toggle light or dark mode" title="Toggle light or dark mode">🌙</button>
   </div>
   <div class="tswrap no-print" id="tswrap">
     <button class="tsbtn" id="tsbtn">
@@ -3684,6 +3754,22 @@ if('serviceWorker' in navigator){
     console.log('Service Worker registered',reg.scope);
   }).catch(err=>console.log('SW registration failed',err));
 }
+</script>
+<script>
+(function(){
+  var b=document.body,btn=document.getElementById('themeBtn'),meta=document.querySelector('meta[name="theme-color"]');
+  var saved='dark';try{saved=localStorage.getItem('ficTheme')||'dark'}catch(e){}
+  document.documentElement.classList.remove('light-pre');
+  function apply(t){
+    if(t==='light'){b.classList.add('light');btn.textContent='☀️';if(meta)meta.setAttribute('content','#F4ECD8')}
+    else{b.classList.remove('light');btn.textContent='🌙';if(meta)meta.setAttribute('content','#080B16')}
+  }
+  apply(saved);
+  btn.addEventListener('click',function(){
+    var next=b.classList.contains('light')?'dark':'light';
+    apply(next);try{localStorage.setItem('ficTheme',next)}catch(e){}
+  });
+})();
 </script>
 </body>
 </html>
