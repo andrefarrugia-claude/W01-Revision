@@ -1,4 +1,4 @@
-const CACHE_NAME = 'insurance-course-v1';
+const CACHE_NAME = 'insurance-course-v2';
 const urlsToCache = [
   './',
   './index.html',

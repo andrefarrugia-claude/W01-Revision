@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Revision Platform for W01 — Award in General Insurance</title>
 <meta name="description" content="Revision platform for W01 Award in General Insurance: ten topics with flashcards, quizzes, sorters and printable fact sheets.">
 <meta name="theme-color" content="#080B16">
@@ -375,6 +375,53 @@ body.light .toast{color:#F0EBDC}
   .fswrap:last-of-type{page-break-after:auto}
   .fs{box-shadow:none}
 }
+
+/* ===== Mobile / touch optimisation ===== */
+*{touch-action:manipulation}
+html,body{overflow-x:hidden;-webkit-text-size-adjust:100%}
+.wrap{overflow-x:hidden}
+.bd,.fps,.note,.cq,.sc,.h2,.fp,.panel,.stat,.tab,.ddi,.tsitem,.modal-b{overflow-wrap:anywhere;word-wrap:break-word}
+
+/* Stat tiles as buttons (clickable for info) */
+button.stat{font-family:inherit;text-align:left;cursor:pointer;width:auto;color:inherit;font-size:inherit;line-height:inherit}
+button.stat:hover{filter:brightness(1.08)}
+button.stat:active{transform:scale(.97)}
+button.stat::after{content:"ⓘ";position:absolute;top:5px;right:7px;font-size:9px;color:var(--ink2);opacity:.55}
+.stat{position:relative}
+
+/* Info modal */
+.modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:18px;animation:ddpop .15s ease-out}
+.modal-bd{position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+.modal-c{position:relative;background:linear-gradient(160deg,#1B2A4A 0%,#0E1730 100%);border:1.5px solid rgba(201,162,63,.5);border-radius:18px;padding:20px 18px 16px;max-width:380px;width:100%;box-shadow:0 22px 50px rgba(0,0,0,.7);max-height:85vh;overflow-y:auto}
+.modal-h{font:700 16px var(--hero);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+.modal-b{font:500 13px var(--body);color:#F0EBDC;line-height:1.55;margin-bottom:14px}
+.modal-b ul{padding-left:18px;margin-top:6px}
+.modal-b li{margin:3px 0}
+.modal-b b{color:var(--gold-l)}
+.modal-x{width:100%;border:0;background:var(--grad);color:#081021;font:700 13px var(--disp);padding:11px;border-radius:11px;cursor:pointer;letter-spacing:.04em}
+body.light .modal-b{color:#F4ECD8}
+
+/* Mobile menu (tabs) — tidy 3-column grid */
+@media (max-width:640px){
+  .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;position:relative}
+  .tabwrap{position:static;flex:none}
+  .tab{font-size:11px;padding:10px 5px;white-space:normal;line-height:1.18;letter-spacing:0;min-height:42px;display:flex;align-items:center;justify-content:center}
+  .tab .ch{display:none}
+  .dd{position:absolute;top:calc(100% + 6px);left:0;right:0;min-width:0;max-width:none;width:auto}
+  .tabwrap:nth-last-child(-n+2) .dd{left:0;right:0}
+  .topbar{padding:14px 0 8px;gap:7px}
+  .brand .t{font-size:14px}
+  .brand .k{font-size:8.5px;letter-spacing:.2em}
+  .xpill{font-size:10.5px;padding:6px 10px}
+  .xpill b{font-size:13px}
+  .stat .n{font-size:19px}
+  .stat .l{font-size:8px}
+  button.stat::after{font-size:10px;top:4px;right:6px}
+}
+@media (max-width:380px){
+  .tab{font-size:10px;padding:9px 3px;min-height:40px}
+  .wrap{padding:0 12px 60px}
+}
 </style>
 </head>
 <body>
@@ -383,7 +430,7 @@ body.light .toast{color:#F0EBDC}
     <button class="back hide" id="backBtn">‹ Back</button>
     <div class="brand" id="brand">
       <div class="k">W01 · Award in General Insurance</div>
-      <div class="t">Revision Platform</div>
+      <div class="t">Insurance Revision Platform</div>
     </div>
     <div class="xpill" id="xpill">SCORE: <b>0</b> PTS = FAIR</div>
     <button class="themebtn no-print" id="themeBtn" aria-label="Toggle light or dark mode" title="Toggle light or dark mode">🌙</button>
@@ -3418,10 +3465,10 @@ function renderSelect(){
   </div>
   <div class="scoresec">
     <div class="statrow">
-      <div class="stat"><div class="n">${tXP}</div><div class="l">Total · points</div></div>
-      <div class="stat"><div class="n">${tDone}/10</div><div class="l">Topics completed</div></div>
-      <div class="stat"><div class="n">${totals.reduce((a,b)=>a+b.mast,0)}/150</div><div class="l">Cards mastered</div></div>
-      <div class="stat"><div class="n">${totals.reduce((a,b)=>a+b.sheets,0)}/60</div><div class="l">Sheets read</div></div>
+      <button type="button" class="stat" data-info="m_xp"><div class="n">${tXP}</div><div class="l">Total · points</div></button>
+      <button type="button" class="stat" data-info="m_done"><div class="n">${tDone}/10</div><div class="l">Topics completed</div></button>
+      <button type="button" class="stat" data-info="m_mast"><div class="n">${totals.reduce((a,b)=>a+b.mast,0)}/150</div><div class="l">Cards mastered</div></button>
+      <button type="button" class="stat" data-info="m_sheets"><div class="n">${totals.reduce((a,b)=>a+b.sheets,0)}/60</div><div class="l">Sheets read</div></button>
     </div>
   </div>
   <div class="tgrid">
@@ -3459,10 +3506,10 @@ function renderHome(){
   </div>
   <div class="scoresec">
   <div class="statrow">
-    <div class="stat"><div class="n">${S.xp}</div><div class="l">Score · points</div></div>
-    <div class="stat"><div class="n">${S.mastered.length}/15</div><div class="l">Mastered</div></div>
-    <div class="stat"><div class="n">${S.best}</div><div class="l">Best streak</div></div>
-    <div class="stat"><div class="n">${S.sheetsRead.length}/6</div><div class="l">Sheets read</div></div>
+    <button type="button" class="stat" data-info="t_xp"><div class="n">${S.xp}</div><div class="l">Score · points</div></button>
+    <button type="button" class="stat" data-info="t_mast"><div class="n">${S.mastered.length}/15</div><div class="l">Mastered</div></button>
+    <button type="button" class="stat" data-info="t_best"><div class="n">${S.best}</div><div class="l">Best streak</div></button>
+    <button type="button" class="stat" data-info="t_sheets"><div class="n">${S.sheetsRead.length}/6</div><div class="l">Sheets read</div></button>
   </div>
   <div class="lvlbar"><i style="width:${pct}%"></i></div>
   <div class="lvlmeta"><span>PROGRESS · ${RANKS[l].toUpperCase()}</span><span>${l>=RANKS.length-1?"TOP LEVEL · EXCELLENT":next-S.xp+" POINTS TO "+RANKS[l+1].toUpperCase()}</span></div>
@@ -3495,9 +3542,9 @@ function renderStudy(){
       <div class="tag">${c.t}</div>
       <div class="h2">${c.ti}</div>
       <div class="bd"><p>${c.f}</p></div>
-      <p class="chint" style="margin-top:18px;font:600 11px var(--mono)">▸ TAP FOR FULL DETAIL</p>`:`
+      <p class="chint" style="margin-top:18px;font:600 11px var(--mono)">▸ Expand for more detail</p>`:`
       ${done?'<span class="stamp" style="animation:none">Mastered</span>':""}
-      <div class="tag">${c.t} · answer</div>
+      <div class="tag">${c.t}</div>
       <div class="h2">${c.ti}</div>
       <div class="bd"><ul>${c.a.map(x=>`<li>${x}</li>`).join("")}</ul></div>
       <div class="note">${c.n}</div>`}
@@ -3611,8 +3658,8 @@ function renderFunFact(){
 function startSorter(){
   const pairs=CT.sorters;
   const p=pairs[Math.floor(Math.random()*pairs.length)];
-  /* convert items[{t,s}] into [text,side] arrays */
-  const deck=p.items.map(it=>[it.t,it.s===0?"L":"R"]);
+  /* normalise both data formats: tuple ["text","L"|"R"] or object {t,s:0|1} */
+  const deck=p.items.map(it=>Array.isArray(it)?[it[0],it[1]]:[it.t,it.s===0?"L":"R"]).filter(d=>d[0]!=null&&d[1]!=null);
   sr={p,deck:shuffle(deck),pos:0,score:0,combo:0,left:30,t:null,lock:false,done:false};
   sr.t=setInterval(()=>{sr.left--;const e=$("#stimer");if(e)e.textContent=sr.left+"s";if(sr.left<=0){clearInterval(sr.t);sr.done=true;renderSorter();}},1000);
 }
@@ -3742,6 +3789,54 @@ function renderPack(){
   $("#pkback").onclick=()=>go("facts");
   $("#pkprint").onclick=()=>window.print();
 }
+
+/* ============ STAT INFO MODAL ============ */
+const STAT_INFO={
+  m_xp:{title:"Total points",body:"Points earned across all ten topics.<br><br>Cards mastered: <b>+10</b> each<br>Correct quiz answers: <b>+10</b> each<br>Fact sheets read: <b>+10</b> each<br>Risk sorter correct: <b>+2</b> each<br><br>Reach <b>150 points</b> per topic to climb each rank."},
+  m_done:{title:"Topics completed",body:"A topic counts as complete when you have mastered all 15 flashcards <b>and</b> read all 6 fact sheets for that topic. Each topic is saved independently on this device."},
+  m_mast:{title:"Cards mastered",body:"15 flashcards per topic × 10 topics = <b>150 cards</b> in total. Open a flashcard, expand for detail, then mark it <b>“I knew it”</b> to add it to your mastered count."},
+  m_sheets:{title:"Fact sheets read",body:"Each topic has 6 printable fact sheets — <b>60 across the platform</b>. Opening a sheet marks it read and adds 10 points."},
+  t_xp:{title:"Score for this topic",body:"Total points earned in this topic only.<br><br>Each mastered card: <b>+10</b><br>Each correct quiz answer: <b>+10</b><br>Each fact sheet read: <b>+10</b><br>Each correct sorter answer: <b>+2</b>"},
+  t_mast:{title:"Mastered flashcards",body:"Flashcards you have flipped open and marked <b>“I knew it”</b>. Reach <b>15 / 15</b> to master this topic."},
+  t_best:{title:"Best streak",body:"Your longest unbroken run of correct answers in this topic’s quiz and blitz. Streaks of 5 or more earn a badge on the result screen."},
+  t_sheets:{title:"Fact sheets read",body:"Printable fact sheets opened in this topic — <b>6 in total</b>. Each one adds 10 points the first time it is opened."}
+};
+function showStatInfo(key){
+  const i=STAT_INFO[key];if(!i)return;
+  const m=document.createElement("div");m.className="modal no-print";
+  m.innerHTML=`<div class="modal-bd"></div><div class="modal-c"><div class="modal-h">${i.title}</div><div class="modal-b">${i.body}</div><button type="button" class="modal-x">Got it</button></div>`;
+  document.body.appendChild(m);
+  const close=()=>{m.remove();};
+  m.querySelector(".modal-x").onclick=close;
+  m.querySelector(".modal-bd").onclick=close;
+  document.addEventListener("keydown",function esc(e){if(e.key==="Escape"){close();document.removeEventListener("keydown",esc);}});
+}
+document.addEventListener("click",e=>{
+  const s=e.target.closest("button.stat[data-info]");
+  if(s){e.stopPropagation();showStatInfo(s.dataset.info);}
+});
+
+/* ============ SWIPE-LEFT = BACK ============ */
+(function(){
+  let sx=null,sy=null,st=null;
+  document.addEventListener("touchstart",e=>{
+    if(e.touches.length!==1)return;
+    if(document.querySelector(".modal"))return;
+    const t=e.target;
+    if(t.closest("input,textarea,select,.dd,.tsdd,.modal,.sorbtns,.knew"))return;
+    sx=e.touches[0].clientX;sy=e.touches[0].clientY;st=Date.now();
+  },{passive:true});
+  document.addEventListener("touchend",e=>{
+    if(sx===null)return;
+    const t=e.changedTouches[0];
+    const dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;
+    sx=sy=st=null;
+    if(dx<-70 && Math.abs(dy)<55 && dt<700 && Math.abs(dx)>Math.abs(dy)*1.6){
+      const bb=document.getElementById("backBtn");
+      if(bb && !bb.classList.contains("hide")){bb.click();}
+    }
+  },{passive:true});
+})();
 
 /* ================= INIT ================= */
 paintTopicBtn();
