@@ -3833,7 +3833,7 @@ document.addEventListener("click",e=>{
     const t=e.changedTouches[0];
     const dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;
     sx=sy=st=null;
-    if(dx<-70 && Math.abs(dy)<55 && dt<700 && Math.abs(dx)>Math.abs(dy)*1.6){
+    if(dx>70 && Math.abs(dy)<55 && dt<700 && Math.abs(dx)>Math.abs(dy)*1.6){
       const bb=document.getElementById("backBtn");
       if(bb && !bb.classList.contains("hide")){bb.click();}
     }
