@@ -424,6 +424,81 @@ body.light .modal-b{color:#F4ECD8}
   .tab{font-size:10px;padding:9px 3px;min-height:40px}
   .wrap{padding:0 12px 60px}
 }
+
+/* ===== v6 additions: flip, confetti, streaks, badges, sorter feedback, hints ===== */
+
+/* 3D flashcard flip */
+.flip3d{perspective:1300px;margin-bottom:14px}
+.flip-inner{display:grid;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.3,.9,.32,1);position:relative}
+.flip3d.flipped .flip-inner{transform:rotateY(180deg)}
+.flip3d .fface{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;margin-bottom:0;min-height:320px;cursor:pointer}
+.flip3d .fback{transform:rotateY(180deg)}
+.cardface{background:linear-gradient(160deg,#E7EAF0 0%,#CCD1DB 100%);border-color:#B0B6C2;box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 16px 38px var(--shadow)}
+.cardface .tag{color:#5A6273}
+.cardface .h2{color:#1B2A4A}
+.cardface .bd{color:#2A3856}
+.cardface .bd li{border-bottom:1px dashed rgba(27,42,74,.18)}
+.cardface .bd li:before{color:#7B8494}
+.cardface .chint{color:#5A6273}
+.cardface .note{color:#2F6B53;background:transparent;border-left-color:#34D399}
+.cardface .stamp{background:rgba(18,22,34,.82)}
+.qchip{position:absolute;top:14px;right:14px;font:600 8.5px var(--mono);letter-spacing:.1em;border-radius:6px;padding:4px 8px;border:1px solid;z-index:2}
+.qchip.qdone{color:#15803D;border-color:#15803D;background:rgba(52,211,153,.15)}
+.qchip.qweak{color:#B91C1C;border-color:#B91C1C;background:rgba(229,72,77,.1)}
+.qchip.qonce{color:#7A5E14;border-color:#A07E22;background:rgba(201,162,63,.14)}
+
+/* Confetti */
+.cf{position:fixed;top:-16px;z-index:400;border-radius:2px;pointer-events:none;animation:cfall 2.6s linear forwards;opacity:.95}
+@keyframes cfall{to{transform:translateY(108vh) rotate(660deg);opacity:.85}}
+
+/* Streak strip + 14-day calendar */
+.streakstrip{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin:14px 0 4px;backdrop-filter:blur(10px)}
+.flamebig{font:700 14px var(--disp);color:var(--gold-l);display:flex;align-items:center;gap:7px}
+.cal{display:flex;gap:4px;margin-left:auto}
+.cd{width:11px;height:11px;border-radius:3.5px;background:var(--line);border:1px solid transparent}
+.cd.on{background:var(--grad);box-shadow:0 0 8px rgba(201,162,63,.5)}
+.cd.today{border-color:var(--gold-l)}
+.examchip{font:600 10.5px var(--mono);letter-spacing:.05em;color:var(--ink2);background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:7px 10px;cursor:pointer;transition:.15s;text-align:left}
+.examchip:hover{border-color:var(--line2);color:var(--ink)}
+body.light .flamebig{color:#7A5E14}
+@media (max-width:640px){.cal{margin-left:0;width:100%;order:3}.streakstrip{gap:8px}}
+
+/* Badge cabinet */
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media (max-width:480px){.bgrid{grid-template-columns:1fr}}
+.bcard{display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;backdrop-filter:blur(8px)}
+.bcard.won{border-color:rgba(201,162,63,.55);box-shadow:0 0 16px rgba(201,162,63,.12)}
+.bcard .bic{font-size:22px;flex:none;filter:grayscale(1);opacity:.45;line-height:1.2}
+.bcard.won .bic{filter:none;opacity:1}
+.bcard .bnm{display:block;font:700 13px var(--disp);color:var(--ink)}
+.bcard .bds{display:block;font:400 11px var(--body);color:var(--ink2);line-height:1.45;margin-top:2px}
+.bcard .bdt{display:block;font:600 9px var(--mono);color:var(--gold-l);margin-top:5px;letter-spacing:.08em}
+body.light .bcard .bdt{color:#7A5E14}
+
+/* Sorter corrective feedback */
+.sorfix{margin-top:12px;font:600 12.5px var(--body);color:#FECDD3;background:rgba(229,72,77,.16);border:1px solid var(--red);border-radius:10px;padding:8px 12px;line-height:1.4;animation:ddpop .15s ease-out}
+.sorfix b{color:#fff}
+body.light .sorfix{color:#8A1F2A;background:rgba(229,72,77,.1)}
+body.light .sorfix b{color:#8A1F2A}
+
+/* Mock exam per-topic breakdown */
+.mrow{display:flex;justify-content:space-between;gap:10px;font:600 11px var(--mono);color:var(--ink2);padding:7px 4px;border-bottom:1px dashed var(--line)}
+.mrow b{color:var(--gold-l);margin-right:6px}
+.mrow .pc{color:var(--green);white-space:nowrap}
+.mrow.weakrow .pc{color:var(--red)}
+body.light .mrow b{color:#7A5E14}
+
+/* Keyboard hints (desktop only) */
+.kbdhint{display:none;text-align:center;font:500 10px var(--mono);color:var(--ink2);margin-top:10px;letter-spacing:.05em;text-transform:uppercase}
+@media (hover:hover) and (pointer:fine){.kbdhint{display:block}}
+
+/* Exam date input inside modal */
+.exinput{width:100%;background:rgba(255,255,255,.08);border:1.5px solid var(--line2);border-radius:10px;color:#F0EBDC;font:600 14px var(--body);padding:10px;margin-bottom:12px;color-scheme:dark}
+.modal-x.exghost{margin-top:8px;background:transparent;border:1.5px solid var(--line2);color:#F0EBDC}
+
+@media print{.cf,.streakstrip,.kbdhint{display:none!important}}
+
+.themebtn.off{opacity:.45;filter:grayscale(1)}
 </style>
 </head>
 <body>
@@ -435,6 +510,8 @@ body.light .modal-b{color:#F4ECD8}
       <div class="t">Insurance Revision Platform</div>
     </div>
     <div class="xpill" id="xpill">SCORE: <b>0</b> PTS = FAIR</div>
+    <button class="themebtn no-print" id="hapBtn" aria-label="Toggle vibration feedback" title="Toggle vibration feedback">📳</button>
+    <button class="themebtn no-print" id="sndBtn" aria-label="Toggle sound effects" title="Toggle sound effects">🔇</button>
     <button class="themebtn no-print" id="themeBtn" aria-label="Toggle light or dark mode" title="Toggle light or dark mode">🌙</button>
   </div>
   <div class="tswrap no-print" id="tswrap">
@@ -3308,16 +3385,117 @@ const CREST='<svg class="crest" viewBox="0 0 48 56"><defs><linearGradient id="cg
 const RANKS=["Fair","Satisfactory","Good","Very Good","Excellent"];
 const SHEET_ICONS=["scales","matrix","warning","shield","pyramid","umbrella"];
 
-/* ================= STATE ================= */
+/* ================= GLOBAL STATE (streaks, badges, settings) ================= */
+let G={sound:false,haptic:false,streak:0,lastDay:"",bestDays:0,days:{},badges:{},examDate:"",daily:{},mockBest:0};
+function loadG(){
+  try{const x=JSON.parse(localStorage.getItem("insCourseV1:global"));if(x)G=Object.assign(G,x);}catch(e){}
+  if(!G.days||typeof G.days!=="object")G.days={};
+  if(!G.badges||typeof G.badges!=="object")G.badges={};
+  if(!G.daily||typeof G.daily!=="object")G.daily={};
+}
+function saveG(){try{localStorage.setItem("insCourseV1:global",JSON.stringify(G));}catch(e){}}
+function dayStr(d){d=d||new Date();const p=x=>String(x).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate());}
+function touchDay(n){
+  const today=dayStr();
+  G.days[today]=(G.days[today]||0)+(n||0);
+  if(G.lastDay!==today){
+    const y=new Date();y.setDate(y.getDate()-1);
+    G.streak=(G.lastDay===dayStr(y))?(G.streak||0)+1:1;
+    G.lastDay=today;
+    if(G.streak>(G.bestDays||0))G.bestDays=G.streak;
+    if(G.streak>=3)award("days3");
+    if(G.streak>=7)award("days7");
+  }
+  saveG();
+}
+function streakInfo(){
+  const today=dayStr();const y=new Date();y.setDate(y.getDate()-1);
+  if(G.lastDay===today)return{n:G.streak,live:true};
+  if(G.lastDay===dayStr(y))return{n:G.streak,live:false};
+  return{n:0,live:false};
+}
+
+/* ================= ACHIEVEMENTS ================= */
+const BADGES=[
+ {id:"first_points",ic:"🌱",nm:"First Steps",ds:"Earn your first points anywhere on the platform."},
+ {id:"perfect_quiz",ic:"💯",nm:"Perfect Round",ds:"Score full marks in a topic quiz."},
+ {id:"streak5",ic:"🔥",nm:"Streak Master",ds:"Answer five in a row correctly in a quiz or blitz."},
+ {id:"blitz10",ic:"⚡",nm:"Blitz Survivor",ds:"Get ten or more correct in one sixty second blitz."},
+ {id:"sorter100",ic:"🎯",nm:"Rapid Sorter",ds:"Score one hundred points or more in a single sorter round."},
+ {id:"topic_done",ic:"🏆",nm:"Topic Complete",ds:"Master all fifteen cards and read all six sheets in one topic."},
+ {id:"all_done",ic:"👑",nm:"Grand Master",ds:"Complete every one of the ten topics."},
+ {id:"sheets10",ic:"📚",nm:"Bookworm",ds:"Read ten fact sheets across the platform."},
+ {id:"mock70",ic:"🎓",nm:"Exam Ready",ds:"Score seventy per cent or better in a twenty question mock exam."},
+ {id:"days3",ic:"🕯️",nm:"Three Day Flame",ds:"Practise on three days in a row."},
+ {id:"days7",ic:"🌟",nm:"Seven Day Flame",ds:"Practise on seven days in a row."},
+ {id:"daily5",ic:"⏱️",nm:"Daily Fiver",ds:"Complete a Daily Five session."}
+];
+function award(id){
+  if(G.badges[id])return;
+  G.badges[id]=dayStr();saveG();
+  const b=BADGES.find(x=>x.id===id);
+  if(b){toast("🏅 Badge unlocked — "+b.nm);sfx("badge");confetti(22);}
+}
+
+/* ================= SOUND, HAPTICS, CONFETTI ================= */
+let AC=null;
+function ac(){
+  if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}
+  if(AC&&AC.state==="suspended"){try{AC.resume();}catch(e){}}
+  return AC;
+}
+function tone(f,d,type,vol,when){
+  const c=ac();if(!c)return;
+  const t0=c.currentTime+(when||0);
+  const o=c.createOscillator(),g=c.createGain();
+  o.type=type||"sine";o.frequency.value=f;
+  g.gain.setValueAtTime(0.0001,t0);
+  g.gain.exponentialRampToValueAtTime(vol||.05,t0+.012);
+  g.gain.exponentialRampToValueAtTime(0.0001,t0+(d||.12));
+  o.connect(g);g.connect(c.destination);
+  o.start(t0);o.stop(t0+(d||.12)+.05);
+}
+function sfx(k){
+  if(!G.sound)return;
+  try{
+    if(k==="ok")tone(880,.09,"sine",.05);
+    else if(k==="combo"){tone(660,.08,"sine",.05);tone(990,.1,"sine",.05,.09);}
+    else if(k==="bad")tone(150,.16,"square",.035);
+    else if(k==="flip")tone(520,.05,"triangle",.03);
+    else if(k==="badge"){tone(523,.09,"sine",.05);tone(659,.09,"sine",.05,.1);tone(784,.16,"sine",.055,.2);}
+  }catch(e){}
+}
+function vibr(p){if(!G.haptic)return;try{if(navigator.vibrate)navigator.vibrate(p);}catch(e){}}
+const RM=!!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+function confetti(n){
+  if(RM)return;
+  const cols=["#C9A23F","#E7C766","#F4ECD8","#34D399","#1B2A4A","#E5484D"];
+  for(let i=0;i<(n||36);i++){
+    const s=document.createElement("i");s.className="cf no-print";
+    s.style.left=(Math.random()*100)+"vw";
+    s.style.background=cols[i%cols.length];
+    s.style.animationDuration=(2.1+Math.random()*1.6)+"s";
+    s.style.animationDelay=(Math.random()*.5)+"s";
+    s.style.width=(6+Math.random()*6)+"px";
+    s.style.height=(10+Math.random()*8)+"px";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),4400);
+  }
+}
+
+/* ================= TOPIC STATE ================= */
 let CT=null; /* current topic */
-let S={xp:0,best:0,mastered:[],sorterBest:0,sheetsRead:[]};
+let S={xp:0,best:0,mastered:[],sorterBest:0,sheetsRead:[],weak:[],known1:{},qDone:[],celebrated:false};
 function lsKey(){return "insCourseV1:"+(CT?CT.id:"none");}
 function loadState(){
-  S={xp:0,best:0,mastered:[],sorterBest:0,sheetsRead:[]};
+  S={xp:0,best:0,mastered:[],sorterBest:0,sheetsRead:[],weak:[],known1:{},qDone:[],celebrated:false};
   if(!CT)return;
   try{const x=JSON.parse(localStorage.getItem(lsKey()));if(x)S=Object.assign(S,x);}catch(e){}
   if(!Array.isArray(S.mastered))S.mastered=[];
   if(!Array.isArray(S.sheetsRead))S.sheetsRead=[];
+  if(!Array.isArray(S.weak))S.weak=[];
+  if(!Array.isArray(S.qDone))S.qDone=[];
+  if(!S.known1||typeof S.known1!=="object")S.known1={};
 }
 function save(){if(!CT)return;try{localStorage.setItem(lsKey(),JSON.stringify(S));}catch(e){}}
 function topicProgress(t){
@@ -3327,7 +3505,32 @@ function topicProgress(t){
     return {xp,mast,sheets,done:mast>=15&&sheets>=6};
   }catch(e){return {xp:0,mast:0,sheets:0,done:false};}
 }
-function addXP(n){S.xp+=n;save();paintXP();}
+function addXP(n){
+  S.xp+=n;save();paintXP();
+  if(n>0&&!G.badges.first_points)award("first_points");
+  touchDay(n);
+}
+function bankXP(tid,n){
+  if(CT&&CT.id===tid){addXP(n);return;}
+  try{
+    const k="insCourseV1:"+tid;
+    const x=JSON.parse(localStorage.getItem(k))||{};
+    x.xp=(x.xp||0)+n;
+    localStorage.setItem(k,JSON.stringify(x));
+  }catch(e){}
+  if(n>0&&!G.badges.first_points)award("first_points");
+  touchDay(n);
+}
+function checkTopicDone(){
+  if(!CT||S.celebrated)return;
+  if(S.mastered.length>=15&&S.sheetsRead.length>=6){
+    S.celebrated=true;save();
+    confetti(70);sfx("badge");
+    toast("🎉 Topic complete — "+CT.title);
+    award("topic_done");
+    if(TOPICS.every(t=>topicProgress(t).done))award("all_done");
+  }
+}
 function level(){return Math.min(Math.floor(S.xp/150),RANKS.length-1);}
 function paintXP(){
   const pill=document.getElementById("xpill");
@@ -3339,12 +3542,20 @@ function paintXP(){
 
 let view="select", idx=0, flipped=false;
 let qz=null, sr=null, sheetIdx=0, funIdx=0, curSorterIdx=0;
+let studyOrd=null, pendingRead=null, ffOpen=false, ffSeen={};
 
 const $=s=>document.querySelector(s), app=document.getElementById("app");
 function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1700);}
 function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(p=>p[1]);}
 function stamp(host,txt,cls){if(!host)return;const s=document.createElement("span");s.className="stamp "+(cls||"");s.textContent=txt;host.appendChild(s);setTimeout(()=>s.remove(),1100);}
 function esc(s){return (s+"").replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+function clearPendingRead(){if(pendingRead){clearTimeout(pendingRead);pendingRead=null;}}
+function shareScore(txt){
+  const t=txt+" — can you beat me?";
+  if(navigator.share){navigator.share({text:t}).catch(()=>{});}
+  else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>toast("Copied — paste it to your classmates")).catch(()=>toast("Could not copy"));}
+  else toast(t);
+}
 
 /* ================= TOPIC SELECTOR DROPDOWN ================= */
 function buildTopicDD(){
@@ -3378,7 +3589,7 @@ function pickTopic(tid){
   paintTopicBtn();
   buildSheetDD();
   document.getElementById("tabs").classList.toggle("hide",!CT);
-  idx=0;flipped=false;sheetIdx=0;funIdx=0;curSorterIdx=0;qz=null;sr=null;
+  idx=0;flipped=false;sheetIdx=0;funIdx=0;curSorterIdx=0;qz=null;sr=null;studyOrd=null;
   go("home");
 }
 function buildSheetDD(){
@@ -3398,6 +3609,9 @@ function buildSheetDD(){
 function go(v){
   if(v!=="quiz"&&qz&&qz.t){clearInterval(qz.t);qz.t=null;}
   if(v!=="sorter"&&sr&&sr.t){clearInterval(sr.t);sr.t=null;}
+  clearPendingRead();
+  if(v==="study")studyOrd=null;
+  if(v==="funfact")ffOpen=false;
   view=v;
   document.getElementById("backBtn").classList.toggle("hide",v==="select"||(v==="home"&&CT));
   window.scrollTo({top:0});
@@ -3409,8 +3623,9 @@ function closeDD(){
   document.getElementById("tswrap").classList.remove("open");
 }
 function setTab(){
+  if(!CT){document.querySelectorAll(".tabwrap").forEach(w=>w.classList.remove("active"));return;}
   const map={facts:"facts",sheet:"facts",pack:"facts",study:"study",sorter:"sorter",funfact:"funfact",
-             quiz:(qz&&qz.blitz)?"quizB":"quizN"};
+             quiz:(qz&&qz.mode==="topic")?(qz.blitz?"quizB":"quizN"):""};
   const k=map[view]||"";
   document.querySelectorAll(".tabwrap").forEach(w=>w.classList.toggle("active",w.dataset.t===k));
 }
@@ -3437,12 +3652,15 @@ document.addEventListener("click",closeDD);
 document.querySelector(".brand").onclick=()=>{CT=null;loadState();paintTopicBtn();document.getElementById("tabs").classList.add("hide");go("select");};
 document.getElementById("backBtn").onclick=()=>{
   if(view==="sheet"||view==="pack")go("facts");
+  else if(!CT&&view!=="select")go("select");
   else if(view==="home"&&!CT)return;
   else if(view==="home"){CT=null;loadState();paintTopicBtn();document.getElementById("tabs").classList.add("hide");go("select");}
   else go("home");
 };
 function render(){
   if(view==="select")return renderSelect();
+  if(view==="achieve")return renderAchieve();
+  if(view==="quiz"&&qz&&qz.mode!=="topic")return renderQuiz();
   if(!CT)return renderSelect();
   if(view==="home")renderHome();
   else if(view==="study")renderStudy();
@@ -3459,11 +3677,32 @@ function renderSelect(){
   const totals=TOPICS.map(topicProgress);
   const tXP=totals.reduce((a,b)=>a+b.xp,0);
   const tDone=totals.filter(p=>p.done).length;
+  const st=streakInfo(), today=dayStr();
+  const cal=[];
+  for(let i=13;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);const ds=dayStr(d);
+    cal.push(`<span class="cd ${G.days[ds]?"on":""} ${ds===today?"today":""}" title="${ds}"></span>`);
+  }
+  const dd=G.daily[today];
+  const won=Object.keys(G.badges).length;
+  let exam="🎓 Set your exam date";
+  if(G.examDate){
+    const days=Math.ceil((new Date(G.examDate)-new Date(today))/86400000);
+    if(days>=0){
+      const left=10-tDone,wk=Math.max(days/7,.5),pace=left>0?Math.ceil(left/wk):0;
+      exam=`🎓 ${days} day${days===1?"":"s"} to exam · ${left>0?left+" topics left · aim for "+pace+" a week":"all topics complete — keep revising"}`;
+    }else exam="🎓 Exam date passed — set a new goal";
+  }
   app.innerHTML=`
   <div class="fp">
     <div class="fpk">W01 · Award in General Insurance · Revision Platform</div>
     <h1 class="fph">A Revision Resource for W01 — Award in Insurance</h1>
-    <p class="fps">Choose a topic below to open the revision platform. Each topic carries fifteen flashcards, six printable fact sheets, a full quiz, a sixty second blitz, a risk sorter and three curated fun facts drawn from the W01 syllabus. Use the pull down at the top to switch between topics at any time. Progress is saved on this device for each topic separately.</p>
+    <p class="fps">Choose a topic below to open the revision platform. Each topic carries fifteen flashcards, six printable fact sheets, a full quiz, a sixty second blitz, a risk sorter and three curated fun facts drawn from the W01 syllabus. Build a daily streak, take the Daily Five, sit a mock exam and collect badges as you go. Progress is saved on this device.</p>
+  </div>
+  <div class="streakstrip">
+    <span class="flamebig">🔥 ${st.n>0?st.n+" day streak"+(st.live?"":" · practise today to keep it"):"Start your streak today"}</span>
+    <span class="cal">${cal.join("")}</span>
+    <button class="examchip" id="examBtn">${exam}</button>
   </div>
   <div class="scoresec">
     <div class="statrow">
@@ -3472,6 +3711,20 @@ function renderSelect(){
       <button type="button" class="stat" data-info="m_mast"><div class="n">${totals.reduce((a,b)=>a+b.mast,0)}/150</div><div class="l">Cards mastered</div></button>
       <button type="button" class="stat" data-info="m_sheets"><div class="n">${totals.reduce((a,b)=>a+b.sheets,0)}/60</div><div class="l">Sheets read</div></button>
     </div>
+  </div>
+  <div class="grid" style="margin:14px 0 4px">
+    <button class="tile" id="dailyBtn"><div class="in">
+      <div class="eb">⚡ DAILY FIVE${dd!==undefined?" · DONE ✓":""}</div>
+      <h3>${dd!==undefined?dd+"/5 today":"Daily Five"}</h3>
+      <div class="d">${dd!==undefined?"Done for today — come back tomorrow, or run it again for extra practice.":"Five quick questions drawn from your weakest areas across all ten topics."}</div></div></button>
+    <button class="tile" id="mockBtn"><div class="in">
+      <div class="eb">📋 MOCK EXAM</div>
+      <h3>Mock exam</h3>
+      <div class="d">Twenty questions across all ten topics, exam style, with a topic by topic breakdown.${G.mockBest?" Best so far: "+G.mockBest+"%.":""}</div></div></button>
+    <button class="tile wide" id="achBtn"><div class="in">
+      <div class="eb">🏅 ACHIEVEMENTS</div>
+      <h3>Badge cabinet — ${won}/${BADGES.length} unlocked</h3>
+      <div class="d">Badges are earned once and kept forever. Collect the full set.</div></div></button>
   </div>
   <div class="tgrid">
     ${TOPICS.map((t,i)=>{const p=totals[i];return `<button class="ttile ${p.done?"done":""}" data-tid="${t.id}">
@@ -3488,13 +3741,60 @@ function renderSelect(){
     <button class="rbtn" id="resetAllBtn" aria-label="Reset all progress" title="Reset all progress">↺</button>
   </div>`;
   document.querySelectorAll("[data-tid]").forEach(b=>b.onclick=()=>pickTopic(b.dataset.tid));
+  $("#dailyBtn").onclick=()=>startDaily();
+  $("#mockBtn").onclick=()=>startMock();
+  $("#achBtn").onclick=()=>go("achieve");
+  $("#examBtn").onclick=e=>{e.stopPropagation();examModal();};
   const doResetAll=()=>{
-    if(confirm("Reset progress for ALL ten topics? This clears every score, mastered card, streak and sheet read on this device. This cannot be undone.")){
+    if(confirm("Reset progress for ALL ten topics? This clears every score, mastered card, streak and sheet read on this device. Badges and your day streak are kept. This cannot be undone.")){
       TOPICS.forEach(t=>{try{localStorage.removeItem("insCourseV1:"+t.id);}catch(e){}});
       loadState();renderSelect();paintXP();
     }
   };
   $("#resetAllBtn").onclick=doResetAll; $("#resetAllLbl").onclick=doResetAll;
+}
+
+/* ================= EXAM COUNTDOWN ================= */
+function examModal(){
+  const m=document.createElement("div");m.className="modal no-print";
+  m.innerHTML=`<div class="modal-bd"></div><div class="modal-c">
+    <div class="modal-h">Exam countdown</div>
+    <div class="modal-b">Set your W01 exam date and the home page will show the days remaining and a suggested pace through the ten topics.</div>
+    <input type="date" class="exinput" id="exdate" value="${G.examDate||""}">
+    <button type="button" class="modal-x" id="exsave">Save date</button>
+    ${G.examDate?'<button type="button" class="modal-x exghost" id="exclear">Clear date</button>':""}
+  </div>`;
+  document.body.appendChild(m);
+  const close=()=>m.remove();
+  m.querySelector(".modal-bd").onclick=close;
+  m.querySelector("#exsave").onclick=()=>{
+    const v=m.querySelector("#exdate").value;
+    if(v){G.examDate=v;saveG();toast("Exam date saved");}
+    close();if(view==="select")renderSelect();
+  };
+  const xc=m.querySelector("#exclear");
+  if(xc)xc.onclick=()=>{G.examDate="";saveG();close();if(view==="select")renderSelect();};
+}
+
+/* ================= ACHIEVEMENTS PAGE ================= */
+function renderAchieve(){
+  const won=Object.keys(G.badges).length;
+  app.innerHTML=`
+  <div class="fp">
+    <div class="fpk">Achievements</div>
+    <h1 class="fph">Badge Cabinet</h1>
+    <p class="fps">${won} of ${BADGES.length} unlocked. Badges are earned once and kept forever on this device — resetting topic progress does not remove them.</p>
+  </div>
+  <div class="bgrid">
+    ${BADGES.map(b=>{const w=G.badges[b.id];
+      return `<div class="bcard ${w?"won":""}">
+        <span class="bic">${w?b.ic:"🔒"}</span>
+        <span style="flex:1">
+          <span class="bnm">${b.nm}</span>
+          <span class="bds">${b.ds}</span>
+          ${w?`<span class="bdt">UNLOCKED ${w}</span>`:""}
+        </span></div>`;}).join("")}
+  </div>`;
 }
 
 /* ================= TOPIC HOME ================= */
@@ -3534,61 +3834,134 @@ function renderHome(){
   paintXP();
 }
 
-/* ================= FLASHCARDS ================= */
+/* ================= FLASHCARDS (spaced repetition + 3D flip) ================= */
+function buildStudyOrder(){
+  const n=CT.cards.length,w=[],f=[],m=[];
+  for(let i=0;i<n;i++){
+    if(S.weak.includes(i))w.push(i);
+    else if(S.mastered.includes(i))m.push(i);
+    else f.push(i);
+  }
+  return w.concat(f,m);
+}
 function renderStudy(){
-  const CARDS=CT.cards;
-  const c=CARDS[idx],done=S.mastered.includes(idx);
+  if(!studyOrd||!studyOrd.length){studyOrd=buildStudyOrder();if(idx>=studyOrd.length)idx=0;}
+  const CARDS=CT.cards, ci=studyOrd[idx], c=CARDS[ci];
+  const done=S.mastered.includes(ci), weak=S.weak.includes(ci), once=S.known1[ci];
+  const chip=done?'<span class="qchip qdone">MASTERED ✓</span>':weak?'<span class="qchip qweak">TO REVIEW</span>':once?'<span class="qchip qonce">KNOWN ONCE</span>':"";
   app.innerHTML=`
-  <div class="panel" id="card" style="cursor:pointer;min-height:320px">
-    ${!flipped?`
+  <div class="flip3d ${flipped?"flipped":""}" id="cardWrap"><div class="flip-inner">
+    <div class="panel fface cardface" id="cardFront">
+      ${chip}
       <div class="tag">${c.t}</div>
       <div class="h2">${c.ti}</div>
       <div class="bd"><p>${c.f}</p></div>
-      <p class="chint" style="margin-top:18px;font:600 11px var(--mono)">▸ Expand for more detail</p>`:`
-      ${done?'<span class="stamp" style="animation:none">Mastered</span>':""}
+      <p class="chint" style="margin-top:18px;font:600 11px var(--mono)">▸ Tap to flip for the detail</p>
+    </div>
+    <div class="panel fface fback cardface" id="cardBack">
       <div class="tag">${c.t}</div>
       <div class="h2">${c.ti}</div>
       <div class="bd"><ul>${c.a.map(x=>`<li>${x}</li>`).join("")}</ul></div>
-      <div class="note">${c.n}</div>`}
-  </div>
-  ${flipped?`<div class="knew">
+      <div class="note">${c.n}</div>
+    </div>
+  </div></div>
+  <div class="knew ${flipped?"":"hide"}" id="knewrow">
     <button class="btn b-bad" id="kbad">Need to review</button>
-    <button class="btn b-good" id="kgood">${done?"Mastered ✓":"I knew it"}</button></div>`:""}
+    <button class="btn b-good" id="kgood">${done?"Still know it ✓":once?"I knew it again":"I knew it"}</button>
+  </div>
   <div class="nav">
     <button class="btn ghost" id="prev">‹ Prev</button>
     <button class="btn solid" id="next">Next ›</button>
   </div>
-  <div class="progress"><i style="width:${(idx+1)/CARDS.length*100}%"></i></div>
-  <div class="meta"><span>CARD ${idx+1} / ${CARDS.length}</span><span>${S.mastered.length} MASTERED</span></div>`;
-  $("#card").onclick=()=>{flipped=!flipped;renderStudy();};
-  $("#prev").onclick=e=>{e.stopPropagation();idx=(idx-1+CARDS.length)%CARDS.length;flipped=false;renderStudy();};
-  $("#next").onclick=e=>{e.stopPropagation();idx=(idx+1)%CARDS.length;flipped=false;renderStudy();};
-  if(flipped){
-    $("#kgood").onclick=e=>{e.stopPropagation();
-      if(!S.mastered.includes(idx)){S.mastered.push(idx);addXP(10);stamp($("#card"),"Mastered");toast("+10 points · "+S.mastered.length+"/15 mastered");}
-      save();idx=(idx+1)%CARDS.length;flipped=false;setTimeout(renderStudy,420);};
-    $("#kbad").onclick=e=>{e.stopPropagation();
-      S.mastered=S.mastered.filter(i=>i!==idx);save();toast("Flagged for review");
-      idx=(idx+1)%CARDS.length;flipped=false;renderStudy();};
+  <div class="progress"><i style="width:${(idx+1)/studyOrd.length*100}%"></i></div>
+  <div class="meta"><span>CARD ${idx+1} / ${studyOrd.length}</span><span>${S.weak.length} TO REVIEW · ${S.mastered.length}/15 MASTERED</span></div>
+  <div class="kbdhint">SPACE flip · ← → move · K knew it · R review</div>`;
+  const wrap=$("#cardWrap");
+  wrap.onclick=()=>{flipped=!flipped;wrap.classList.toggle("flipped",flipped);$("#knewrow").classList.toggle("hide",!flipped);sfx("flip");};
+  const adv=()=>{if(view!=="study"||!studyOrd||!studyOrd.length)return;idx=(idx+1)%studyOrd.length;flipped=false;renderStudy();};
+  $("#prev").onclick=e=>{e.stopPropagation();idx=(idx-1+studyOrd.length)%studyOrd.length;flipped=false;renderStudy();};
+  $("#next").onclick=e=>{e.stopPropagation();adv();};
+  $("#kgood").onclick=e=>{e.stopPropagation();markKnown(ci);setTimeout(adv,420);};
+  $("#kbad").onclick=e=>{e.stopPropagation();
+    if(!S.weak.includes(ci))S.weak.push(ci);
+    S.mastered=S.mastered.filter(i=>i!==ci);
+    delete S.known1[ci];save();
+    toast("Flagged — it will come up first next time");adv();};
+}
+function markKnown(ci){
+  const d=dayStr();
+  S.weak=S.weak.filter(i=>i!==ci);
+  if(S.mastered.includes(ci)){save();stamp($("#cardBack"),"Still known","blue");return;}
+  if(!S.known1[ci]){
+    S.known1[ci]=d;save();addXP(5);
+    stamp($("#cardBack"),"Known once","blue");sfx("ok");
+    toast("+5 points · confirm it on another day to master it");
+  }else if(S.known1[ci]===d){
+    save();toast("Marked today already — confirm tomorrow to master it");
+  }else{
+    S.mastered.push(ci);save();addXP(5);
+    stamp($("#cardBack"),"Mastered");sfx("ok");
+    toast("+5 points · "+S.mastered.length+"/15 mastered");
+    checkTopicDone();
   }
 }
 
-/* ================= QUIZ / BLITZ ================= */
+/* ================= QUIZ / BLITZ / MOCK / DAILY ================= */
+function topicQs(){return CT.cards.map((c,i)=>({c,ci:i,tid:CT.id,tt:CT.title}));}
 function startQuiz(blitz){
-  const CARDS=CT.cards;
-  qz={blitz,order:shuffle([...Array(CARDS.length).keys()]),pos:0,score:0,streak:0,answered:false,left:60,t:null};
+  const qs=topicQs();
+  qz={mode:"topic",retry:false,blitz,qs,order:shuffle([...qs.keys()]),pos:0,score:0,streak:0,answered:false,left:60,t:null,wrong:[],res:{}};
   if(blitz)qz.t=setInterval(()=>{qz.left--;const e=$("#btimer");if(e)e.textContent=qz.left+"s";if(qz.left<=0){clearInterval(qz.t);quizResult();}},1000);
 }
+function startMock(){
+  const qs=TOPICS.flatMap(t=>shuffle([...t.cards.keys()]).slice(0,2).map(i=>({c:t.cards[i],ci:i,tid:t.id,tt:t.title})));
+  qz={mode:"mock",retry:false,blitz:false,qs,order:shuffle([...qs.keys()]),pos:0,score:0,streak:0,answered:false,t:null,wrong:[],res:{}};
+  go("quiz");
+}
+function buildDailyQs(){
+  const pool=[];
+  TOPICS.forEach(t=>{
+    let rec={};try{rec=JSON.parse(localStorage.getItem("insCourseV1:"+t.id))||{};}catch(e){}
+    const weak=rec.weak||[],mast=rec.mastered||[];
+    t.cards.forEach((c,i)=>{
+      const w=weak.includes(i)?0:(mast.includes(i)?2:1);
+      pool.push({c,ci:i,tid:t.id,tt:t.title,w});
+    });
+  });
+  const pick=[];
+  [0,1,2].forEach(w=>{
+    if(pick.length>=5)return;
+    for(const p of shuffle(pool.filter(x=>x.w===w))){
+      if(pick.length>=5)break;
+      if(pick.filter(x=>x.tid===p.tid).length>=2)continue;
+      pick.push(p);
+    }
+  });
+  for(const p of shuffle(pool)){if(pick.length>=5)break;if(!pick.includes(p))pick.push(p);}
+  return shuffle(pick);
+}
+function startDaily(){
+  const qs=buildDailyQs();
+  qz={mode:"daily",retry:false,blitz:false,qs,order:shuffle([...qs.keys()]),pos:0,score:0,streak:0,answered:false,t:null,wrong:[],res:{}};
+  go("quiz");
+}
+function retryMissed(){
+  const missed=qz.wrong.map(i=>qz.qs[i]);
+  qz={mode:qz.mode,retry:true,blitz:false,qs:missed,order:shuffle([...missed.keys()]),pos:0,score:0,streak:0,answered:false,t:null,wrong:[],res:{}};
+  renderQuiz();
+}
 function renderQuiz(){
-  const CARDS=CT.cards;
   if(!qz)return startQuiz(false),renderQuiz();
   if(qz.pos>=qz.order.length)return quizResult();
-  const c=CARDS[qz.order[qz.pos]];qz.answered=false;
+  const Q=qz.qs[qz.order[qz.pos]],c=Q.c;qz.answered=false;
   const opts=shuffle(c.o.map((txt,i)=>({txt,i})));
+  const tag=qz.mode==="mock"?`MOCK EXAM${qz.retry?" · RETRY":""} · TOPIC ${Q.tid} · Q${qz.pos+1} OF ${qz.order.length}`
+    :qz.mode==="daily"?`DAILY FIVE${qz.retry?" · RETRY":""} · TOPIC ${Q.tid} · Q${qz.pos+1} OF ${qz.order.length}`
+    :`${c.t} · ${qz.retry?"RETRY · ":""}Q${qz.pos+1} OF ${qz.order.length}`;
   app.innerHTML=`
   ${qz.blitz?`<div class="bigtimer" id="btimer">${qz.left}s</div>`:""}
   <div class="panel" id="qpanel">
-    <div class="tag">${c.t} · Q${qz.pos+1} OF ${qz.order.length}</div>
+    <div class="tag">${tag}</div>
     <div class="h2">${c.ti}</div>
     <div class="bd"><p>${c.q}</p></div>
     <div class="opts">${opts.map((o,j)=>`<button class="opt" data-i="${o.i}"><span class="let">${"ABCD"[j]}</span><span>${o.txt}</span></button>`).join("")}</div>
@@ -3596,18 +3969,27 @@ function renderQuiz(){
   </div>
   <div class="nav"><button class="btn solid hide" id="nextq">Next ›</button></div>
   <div class="progress"><i style="width:${qz.pos/qz.order.length*100}%"></i></div>
-  <div class="meta"><span>SCORE ${qz.score}</span><span>STREAK ${qz.streak} 🔥</span></div>`;
+  <div class="meta"><span>SCORE ${qz.score}</span><span>STREAK ${qz.streak} 🔥</span></div>
+  <div class="kbdhint">A–D or 1–4 answer · ENTER next</div>`;
   document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
     if(qz.answered)return;qz.answered=true;
-    const i=+b.dataset.i;
+    const i=+b.dataset.i,qi=qz.order[qz.pos];
     document.querySelectorAll(".opt").forEach(x=>{x.onclick=null;if(+x.dataset.i===c.c)x.classList.add("right");});
-    if(i!==c.c)b.classList.add("wrong");
+    const ok=i===c.c;qz.res[qi]=ok;
+    if(!ok){b.classList.add("wrong");qz.wrong.push(qi);}
     $("#exp").style.display="block";
-    if(i===c.c){qz.score++;qz.streak++;addXP(10);
-      if(qz.streak>S.best){S.best=qz.streak;save();}
+    if(ok){
+      qz.score++;qz.streak++;
+      if(qz.mode==="topic"){
+        if(S.qDone.includes(Q.ci))addXP(2);
+        else{S.qDone.push(Q.ci);addXP(10);}
+        if(qz.streak>S.best){S.best=qz.streak;save();}
+      }else if(qz.mode==="daily"&&!qz.retry)bankXP(Q.tid,10);
+      if(qz.streak>=5)award("streak5");
+      sfx(qz.streak>=3?"combo":"ok");
       stamp($("#qpanel"),qz.streak>=3?qz.streak+" STREAK":"Correct");
-      if(qz.streak>=3)toast(qz.streak+" in a row! 🔥 +10 points");}
-    else{qz.streak=0;stamp($("#qpanel"),"Noted","red");}
+      if(qz.streak>=3)toast(qz.streak+" in a row! 🔥");
+    }else{qz.streak=0;sfx("bad");vibr([50,40,50]);stamp($("#qpanel"),"Noted","red");}
     if(qz.blitz){setTimeout(()=>{qz.pos++;if(qz.left>0)renderQuiz();},850);}
     else $("#nextq").classList.remove("hide");
   });
@@ -3615,27 +3997,65 @@ function renderQuiz(){
 }
 function quizResult(){
   if(qz.t)clearInterval(qz.t);
-  const total=qz.blitz?qz.pos:qz.order.length, pct=total?Math.round(qz.score/total*100):0;
+  const N=qz.order.length,total=qz.blitz?Math.min(qz.pos,N):N,pct=total?Math.round(qz.score/total*100):0;
+  const perfect=!qz.blitz&&!qz.retry&&qz.score===N&&N>0;
+  if(perfect&&qz.mode==="topic"){award("perfect_quiz");confetti(60);}
+  else if(perfect)confetti(40);
+  if(qz.blitz&&qz.score>=10)award("blitz10");
+  if(qz.mode==="mock"&&!qz.retry&&N>=20){
+    if(pct>=70)award("mock70");
+    if(pct>(G.mockBest||0)){G.mockBest=pct;saveG();}
+  }
+  if(qz.mode==="daily"&&!qz.retry){G.daily[dayStr()]=qz.score;saveG();award("daily5");}
   const badges=[];
-  if(qz.score===qz.order.length)badges.push(["Perfect Round","g"]);
-  if(S.best>=5)badges.push(["Streak Master ×"+S.best,"o"]);
+  if(perfect)badges.push(["Perfect Round","g"]);
+  if(qz.mode==="topic"&&S.best>=5)badges.push(["Streak Master ×"+S.best,"o"]);
   if(qz.blitz)badges.push(["Blitz Survivor",""]);
-  if(S.mastered.length>=15)badges.push(["Topic Mastered","g"]);
-  const msg=pct>=80?"Outstanding — you are underwriting-ready on this topic.":pct>=50?"Solid grasp — revisit the flagged topics.":"Keep going — flip through the flashcards and retry.";
+  if(qz.mode==="topic"&&S.mastered.length>=15)badges.push(["Topic Mastered","g"]);
+  let breakdown="";
+  if(qz.mode==="mock"){
+    const by={};
+    qz.order.forEach(qi=>{const q=qz.qs[qi];if(!(q.tid in by))by[q.tid]={t:q.tt,r:0,n:0};by[q.tid].n++;if(qz.res[qi])by[q.tid].r++;});
+    breakdown=`<div style="text-align:left;margin:14px 0 4px">`+Object.keys(by).sort().map(k=>{
+      const x=by[k],p=x.n?Math.round(x.r/x.n*100):0;
+      return `<div class="mrow ${p<50?"weakrow":""}"><span><b>${k}</b> ${x.t}</span><span class="pc">${x.r}/${x.n}</span></div>`;
+    }).join("")+`</div>`;
+  }
+  const st=streakInfo();
+  const nudge=st.n>0?`🔥 ${st.n} day streak — come back tomorrow to keep it alive.`:"Practise a little every day to build a streak.";
+  const hdr=qz.mode==="mock"?"MOCK EXAM COMPLETE":qz.mode==="daily"?"DAILY FIVE COMPLETE":qz.blitz?"BLITZ COMPLETE":qz.retry?"RETRY COMPLETE":"QUIZ COMPLETE";
+  const msg=qz.mode==="mock"?(pct>=70?"Exam ready — that is a passing standard. Mocks are diagnostic, so no points at stake.":"Below the line for now — retry the ones you missed. Mocks are diagnostic, so no points at stake.")
+    :qz.mode==="daily"?"Daily Five done — a small burst every day beats a long cram."
+    :pct>=80?"Outstanding — you are underwriting ready on this topic."
+    :pct>=50?"Solid grasp — retry the ones you missed."
+    :"Keep going — flip through the flashcards and retry.";
+  const shareTxt=qz.mode==="mock"?`I scored ${pct}% on a W01 mock exam — Insurance Revision Platform`
+    :qz.mode==="daily"?`Daily Five done — ${qz.score}/5 on the W01 Insurance Revision Platform`
+    :`I scored ${qz.score}/${total} (${pct}%) on ${CT?CT.title:"W01"}${qz.blitz?" in the 60s blitz":""} — Insurance Revision Platform`;
   app.innerHTML=`<div class="panel result">
-    <div class="tag">${qz.blitz?"BLITZ COMPLETE":"QUIZ COMPLETE"}</div>
-    <div class="big">${qz.score}<small>/${qz.blitz?total:qz.order.length}</small></div>
-    <div class="msg">${pct}% correct · best streak ${S.best}<br>${msg}</div>
-    <div>${badges.map(b=>`<span class="badge ${b[1]}">${b[0]}</span>`).join("")||'<span class="badge">No badges yet</span>'}</div>
-    <div class="nav" style="margin-top:20px">
+    <div class="tag">${hdr}</div>
+    <div class="big">${qz.score}<small>/${total}</small></div>
+    <div class="msg">${pct}% correct${qz.mode==="topic"?" · best streak "+S.best:""}<br>${msg}<br><span style="color:var(--gold-l)">${nudge}</span></div>
+    ${breakdown}
+    <div>${badges.map(b=>`<span class="badge ${b[1]}">${b[0]}</span>`).join("")||'<span class="badge">No badges this round</span>'}</div>
+    <div class="nav" style="margin-top:20px;flex-wrap:wrap">
       <button class="btn ghost" id="rhome">Menu</button>
+      ${qz.wrong.length&&!qz.blitz?`<button class="btn solid orange" id="rmiss">Retry missed (${qz.wrong.length})</button>`:""}
       <button class="btn solid" id="ragain">Play again</button>
-    </div></div>`;
-  $("#ragain").onclick=()=>{startQuiz(qz.blitz);renderQuiz();};
-  $("#rhome").onclick=()=>go("home");
+    </div>
+    <div class="nav" style="margin-top:8px"><button class="btn ghost" id="rshare">📣 Share score</button></div>
+  </div>`;
+  $("#ragain").onclick=()=>{
+    if(qz.mode==="mock")startMock();
+    else if(qz.mode==="daily")startDaily();
+    else{startQuiz(qz.blitz);renderQuiz();}
+  };
+  const rm=$("#rmiss");if(rm)rm.onclick=retryMissed;
+  $("#rshare").onclick=()=>shareScore(shareTxt);
+  $("#rhome").onclick=()=>go(CT?"home":"select");
 }
 
-/* ================= FUN FACT ================= */
+/* ================= FUN FACT (guess before reveal) ================= */
 function renderFunFact(){
   const facts=FUN_FACTS[CT.id]||[];
   if(!facts.length){app.innerHTML='<div class="panel"><p>No fun facts for this topic.</p></div>';return;}
@@ -3645,14 +4065,24 @@ function renderFunFact(){
   <div class="panel" id="fun" style="background:linear-gradient(160deg,#F4ECD8 0%,#E7C766 100%);border-color:#A07E22;box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 16px 38px var(--shadow)">
     <div class="tag" style="color:#5A3D0A">✦ Fun fact · ${funIdx+1} of ${facts.length}</div>
     <div class="h2" style="color:#1B2A4A">${f.ti}</div>
-    <div class="bd" style="color:#2A3856"><p>${f.bd}</p></div>
+    ${ffOpen?`<div class="bd" style="color:#2A3856"><p>${f.bd}</p></div>`
+      :`<div class="bd" style="color:#2A3856"><p style="font-style:italic">Have a guess before you look — what do you think the story behind this one is?</p></div>`}
   </div>
   <div class="nav">
     <button class="btn ghost" id="funhome">Menu</button>
-    <button class="btn solid" id="funnext" style="flex:2">Another fun fact ›</button>
+    ${ffOpen?`<button class="btn solid" id="funnext" style="flex:2">Another fun fact ›</button>`
+      :`<button class="btn solid" id="funrev" style="flex:2">Reveal ›</button>`}
   </div>
   <div class="meta"><span>FACT ${funIdx+1} / ${facts.length}</span><span>TOPIC ${CT.id} · ${CT.kicker.toUpperCase()}</span></div>`;
-  $("#funnext").onclick=()=>{funIdx=(funIdx+1)%facts.length;renderFunFact();};
+  const rv=$("#funrev");
+  if(rv)rv.onclick=()=>{
+    ffOpen=true;
+    const k=CT.id+":"+funIdx;
+    if(!ffSeen[k]){ffSeen[k]=1;addXP(2);toast("+2 points · curiosity pays");}
+    renderFunFact();
+  };
+  const nx=$("#funnext");
+  if(nx)nx.onclick=()=>{funIdx=(funIdx+1)%facts.length;ffOpen=false;renderFunFact();};
   $("#funhome").onclick=()=>go("home");
 }
 
@@ -3681,28 +4111,42 @@ function renderSorter(){
     <button class="btn R" data-s="R">${sr.p.R} ▶</button>
   </div>
   <div class="combo">${sr.combo>=2?"COMBO ×"+sr.combo+" 🔥":""}</div>
-  <div class="meta" style="margin-top:6px"><span>SCORE ${sr.score}</span><span>BEST ${S.sorterBest}</span></div>`;
+  <div class="meta" style="margin-top:6px"><span>SCORE ${sr.score}</span><span>BEST ${S.sorterBest}</span></div>
+  <div class="kbdhint">← ${sr.p.L} · ${sr.p.R} →</div>`;
   document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{
     if(sr.lock||sr.done)return;sr.lock=true;
     const ok=b.dataset.s===it[1],pan=$("#spanel");
-    if(ok){sr.combo++;sr.score+=10*Math.min(sr.combo,5);addXP(2);pan.classList.add("flash-g");}
-    else{sr.combo=0;pan.classList.add("flash-r","shake");}
-    setTimeout(()=>{sr.lock=false;sr.pos++;if(!sr.done)renderSorter();},280);
+    if(ok){
+      sr.combo++;sr.score+=10*Math.min(sr.combo,5);addXP(2);
+      pan.classList.add("flash-g");sfx(sr.combo>=3?"combo":"ok");
+      setTimeout(()=>{sr.lock=false;sr.pos++;if(!sr.done)renderSorter();},280);
+    }else{
+      sr.combo=0;pan.classList.add("flash-r","shake");sfx("bad");vibr([50,40,50]);
+      const fx=document.createElement("div");
+      fx.className="sorfix";
+      fx.innerHTML=`Correct side: <b>${it[1]==="L"?esc(sr.p.L):esc(sr.p.R)}</b>`;
+      pan.appendChild(fx);
+      setTimeout(()=>{sr.lock=false;sr.pos++;if(!sr.done)renderSorter();},1000);
+    }
   });
 }
 function sorterResult(){
   const nb=sr.score>S.sorterBest;
-  if(nb){S.sorterBest=sr.score;save();}
+  if(nb){S.sorterBest=sr.score;save();confetti(36);sfx("badge");}
+  if(sr.score>=100)award("sorter100");
+  const st=streakInfo();
   app.innerHTML=`<div class="panel result">
     <div class="tag">RISK SORTER · ${sr.p.name.toUpperCase()}</div>
     <div class="big">${sr.score}</div>
-    <div class="msg">${nb?"New personal best! 🏆":"Best so far: "+S.sorterBest}<br>Combos multiply your points — keep the streak alive.</div>
+    <div class="msg">${nb?"New personal best! 🏆":"Best so far: "+S.sorterBest}<br>Combos multiply your points — keep the streak alive.<br><span style="color:var(--gold-l)">${st.n>0?"🔥 "+st.n+" day streak — come back tomorrow to keep it.":"Practise a little every day to build a streak."}</span></div>
     <div class="nav" style="margin-top:14px">
       <button class="btn ghost" id="shome">Menu</button>
       <button class="btn solid orange" id="sagain">Sort again</button>
-    </div></div>`;
+    </div>
+    <div class="nav" style="margin-top:8px"><button class="btn ghost" id="ssh">📣 Share score</button></div></div>`;
   $("#sagain").onclick=()=>{startSorter();renderSorter();};
   $("#shome").onclick=()=>go("home");
+  $("#ssh").onclick=()=>shareScore(`I scored ${sr.score} in the ${sr.p.name} risk sorter on ${CT.title} — W01 Insurance Revision Platform`);
 }
 
 /* ================= FACT SHEETS ================= */
@@ -3743,7 +4187,13 @@ function sheetHTML(s){
 </div></div>`;
 }
 function markRead(i){
-  if(!S.sheetsRead.includes(i)){S.sheetsRead.push(i);save();addXP(10);toast("+10 points · Sheet "+CT.facts[i].n+" read");}
+  if(!S.sheetsRead.includes(i)){
+    S.sheetsRead.push(i);save();addXP(10);
+    toast("+10 points · Sheet "+CT.facts[i].n+" read");
+    const totalSheets=TOPICS.reduce((a,t)=>a+topicProgress(t).sheets,0);
+    if(totalSheets>=10)award("sheets10");
+    checkTopicDone();
+  }
 }
 function renderFacts(){
   const FACTS=CT.facts;
@@ -3751,7 +4201,7 @@ function renderFacts(){
   <div class="panel"><div class="hz" style="margin:-24px -22px 16px"></div>
     <div class="tag">Insurance Education Library · 6 Sheets</div>
     <div class="h2">Fact Sheets — ${CT.title}</div>
-    <div class="bd"><p>Six classically styled reference sheets covering the topic. Read them on screen for +10 points each, or print the pack — one sheet per page — for the classroom.</p></div>
+    <div class="bd"><p>Six classically styled reference sheets covering the topic. Stay on a sheet for a few seconds to earn +10 points each, or print the pack — one sheet per page — for the classroom.</p></div>
     <div class="nav" style="margin-top:14px"><button class="btn solid" id="openpack" style="flex:1">🖨 Open print pack — all six sheets</button></div>
   </div>
   <div class="grid">
@@ -3766,42 +4216,48 @@ function renderFacts(){
 }
 function renderSheet(){
   const FACTS=CT.facts;
-  const s=FACTS[sheetIdx];markRead(sheetIdx);
+  const s=FACTS[sheetIdx];
+  clearPendingRead();
+  const already=S.sheetsRead.includes(sheetIdx);
+  if(!already){
+    const si=sheetIdx;
+    pendingRead=setTimeout(()=>{
+      pendingRead=null;markRead(si);
+      const m=$("#readhint");if(m)m.textContent="READ ✓ · +10 POINTS";
+    },12000);
+  }
   app.innerHTML=sheetHTML(s)+`
   <div class="nav no-print">
     <button class="btn ghost" id="shprev" ${sheetIdx===0?"disabled":""}>‹ Prev</button>
     <button class="btn solid" id="shprint">🖨 Print</button>
     <button class="btn solid blue" id="shnext" ${sheetIdx===FACTS.length-1?"disabled":""}>Next ›</button>
   </div>
-  <div class="meta no-print"><span>SHEET ${sheetIdx+1} / ${FACTS.length}</span><span>${S.sheetsRead.length}/6 READ</span></div>`;
+  <div class="meta no-print"><span>SHEET ${sheetIdx+1} / ${FACTS.length}</span><span id="readhint">${already?"READ ✓":"READING… STAY ON THIS SHEET TO EARN +10"}</span></div>`;
   $("#shprev").onclick=()=>{if(sheetIdx>0){sheetIdx--;window.scrollTo({top:0});renderSheet();}};
   $("#shnext").onclick=()=>{if(sheetIdx<FACTS.length-1){sheetIdx++;window.scrollTo({top:0});renderSheet();}};
   $("#shprint").onclick=()=>window.print();
 }
 function renderPack(){
   const FACTS=CT.facts;
-  let gained=0;
-  FACTS.forEach((_,i)=>{if(!S.sheetsRead.includes(i)){S.sheetsRead.push(i);S.xp+=10;gained+=10;}});
-  save();paintXP();
-  if(gained)toast("+"+gained+" points · full pack opened");
   app.innerHTML=`<div class="nav no-print" style="margin:0 0 14px">
     <button class="btn ghost" id="pkback">‹ Library</button>
     <button class="btn solid" id="pkprint" style="flex:2">🖨 Print / save PDF — 6 pages</button>
-  </div>`+FACTS.map(sheetHTML).join("");
+  </div>
+  <div class="meta no-print" style="margin:0 0 12px"><span>PRINT PACK · ${FACTS.length} SHEETS</span><span>POINTS ARE EARNED BY READING SHEETS IN THE LIBRARY</span></div>`+FACTS.map(sheetHTML).join("");
   $("#pkback").onclick=()=>go("facts");
   $("#pkprint").onclick=()=>window.print();
 }
 
 /* ============ STAT INFO MODAL ============ */
 const STAT_INFO={
-  m_xp:{title:"Total points",body:"Points earned across all ten topics.<br><br>Cards mastered: <b>+10</b> each<br>Correct quiz answers: <b>+10</b> each<br>Fact sheets read: <b>+10</b> each<br>Risk sorter correct: <b>+2</b> each<br><br>Reach <b>150 points</b> per topic to climb each rank."},
+  m_xp:{title:"Total points",body:"Points earned across all ten topics.<br><br>Flashcards: <b>+5</b> when first known, <b>+5</b> more when confirmed on a later day<br>Quiz answers: <b>+10</b> the first time each question is answered correctly, <b>+2</b> on repeats<br>Fact sheets: <b>+10</b> each, once read on screen<br>Risk sorter: <b>+2</b> per correct sort<br>Fun facts: <b>+2</b> per reveal<br><br>Reach <b>150 points</b> per topic to climb each rank."},
   m_done:{title:"Topics completed",body:"A topic counts as complete when you have mastered all 15 flashcards <b>and</b> read all 6 fact sheets for that topic. Each topic is saved independently on this device."},
-  m_mast:{title:"Cards mastered",body:"15 flashcards per topic × 10 topics = <b>150 cards</b> in total. Open a flashcard, expand for detail, then mark it <b>“I knew it”</b> to add it to your mastered count."},
-  m_sheets:{title:"Fact sheets read",body:"Each topic has 6 printable fact sheets — <b>60 across the platform</b>. Opening a sheet marks it read and adds 10 points."},
-  t_xp:{title:"Score for this topic",body:"Total points earned in this topic only.<br><br>Each mastered card: <b>+10</b><br>Each correct quiz answer: <b>+10</b><br>Each fact sheet read: <b>+10</b><br>Each correct sorter answer: <b>+2</b>"},
-  t_mast:{title:"Mastered flashcards",body:"Flashcards you have flipped open and marked <b>“I knew it”</b>. Reach <b>15 / 15</b> to master this topic."},
-  t_best:{title:"Best streak",body:"Your longest unbroken run of correct answers in this topic’s quiz and blitz. Streaks of 5 or more earn a badge on the result screen."},
-  t_sheets:{title:"Fact sheets read",body:"Printable fact sheets opened in this topic — <b>6 in total</b>. Each one adds 10 points the first time it is opened."}
+  m_mast:{title:"Cards mastered",body:"15 flashcards per topic × 10 topics = <b>150 cards</b> in total. A card becomes mastered when you mark it <b>“I knew it”</b> on <b>two different days</b> — that is what real memory needs."},
+  m_sheets:{title:"Fact sheets read",body:"Each topic has 6 printable fact sheets — <b>60 across the platform</b>. Staying on a sheet for a few seconds marks it read and adds 10 points."},
+  t_xp:{title:"Score for this topic",body:"Total points earned in this topic only.<br><br>Each card: <b>+5</b> first known, <b>+5</b> when confirmed on a later day<br>Each quiz question: <b>+10</b> first correct, <b>+2</b> on repeats<br>Each fact sheet read: <b>+10</b><br>Each correct sorter answer: <b>+2</b>"},
+  t_mast:{title:"Mastered flashcards",body:"Flip a card open and mark it <b>“I knew it”</b>. Marking it on <b>two different days</b> makes it mastered — spacing beats cramming. Reach <b>15 / 15</b> to master this topic."},
+  t_best:{title:"Best streak",body:"Your longest unbroken run of correct answers in this topic’s quiz and blitz. Streaks of 5 or more earn the Streak Master badge."},
+  t_sheets:{title:"Fact sheets read",body:"Printable fact sheets read in this topic — <b>6 in total</b>. Each one adds 10 points the first time you stay on it for a few seconds."}
 };
 function showStatInfo(key){
   const i=STAT_INFO[key];if(!i)return;
@@ -3816,6 +4272,37 @@ function showStatInfo(key){
 document.addEventListener("click",e=>{
   const s=e.target.closest("button.stat[data-info]");
   if(s){e.stopPropagation();showStatInfo(s.dataset.info);}
+});
+
+/* ============ KEYBOARD SHORTCUTS ============ */
+document.addEventListener("keydown",e=>{
+  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  const tg=e.target;
+  if(tg&&tg.matches&&tg.matches("input,textarea,select"))return;
+  if(tg&&tg.tagName==="BUTTON"&&(e.key==="Enter"||e.key===" "))return;
+  if(document.querySelector(".modal"))return;
+  if(e.key==="Escape"){
+    const bb=document.getElementById("backBtn");
+    if(bb&&!bb.classList.contains("hide"))bb.click();
+    return;
+  }
+  if(view==="study"){
+    if(e.key===" "||e.key==="Enter"){e.preventDefault();const w=$("#cardWrap");if(w)w.click();}
+    else if(e.key==="ArrowLeft"){const b=$("#prev");if(b)b.click();}
+    else if(e.key==="ArrowRight"){const b=$("#next");if(b)b.click();}
+    else if(e.key==="k"||e.key==="K"){if(flipped){const b=$("#kgood");if(b)b.click();}}
+    else if(e.key==="r"||e.key==="R"){if(flipped){const b=$("#kbad");if(b)b.click();}}
+  }else if(view==="quiz"&&qz){
+    const ki="abcd".indexOf((e.key||"").toLowerCase()),kn="1234".indexOf(e.key);
+    const j=ki>=0?ki:kn;
+    if(j>=0&&!qz.answered){const os=document.querySelectorAll(".opt");if(os[j])os[j].click();}
+    else if((e.key==="Enter"||e.key==="ArrowRight")&&qz.answered){const b=$("#nextq");if(b&&!b.classList.contains("hide"))b.click();}
+  }else if(view==="sorter"&&sr&&!sr.done){
+    if(e.key==="ArrowLeft"){const b=document.querySelector('[data-s="L"]');if(b)b.click();}
+    else if(e.key==="ArrowRight"){const b=document.querySelector('[data-s="R"]');if(b)b.click();}
+  }else if(view==="funfact"){
+    if(e.key==="Enter"||e.key===" "){e.preventDefault();const b=$("#funrev")||$("#funnext");if(b)b.click();}
+  }
 });
 
 /* ============ SWIPE-LEFT = BACK ============ */
@@ -3841,8 +4328,29 @@ document.addEventListener("click",e=>{
 })();
 
 /* ================= INIT ================= */
+loadG();
 paintTopicBtn();
 paintXP();
+(function(){
+  const sb=document.getElementById("sndBtn");
+  if(sb){
+    const paintSnd=()=>{sb.textContent=G.sound?"🔊":"🔇";};
+    sb.onclick=()=>{G.sound=!G.sound;saveG();paintSnd();if(G.sound){sfx("ok");toast("Sound on — beeps on right answers");}else toast("Sound off");};
+    paintSnd();
+  }
+  const hb=document.getElementById("hapBtn");
+  if(hb){
+    const paintHap=()=>{hb.classList.toggle("off",!G.haptic);};
+    hb.onclick=()=>{
+      if(!G.haptic&&!("vibrate" in navigator)){toast("Vibration is not supported on this device");return;}
+      G.haptic=!G.haptic;saveG();paintHap();
+      if(G.haptic){try{navigator.vibrate(60);}catch(e){}toast("Vibration on — buzzes on wrong answers");}
+      else toast("Vibration off");
+    };
+    paintHap();
+  }
+  document.addEventListener("pointerdown",function un(){if(G.sound)ac();document.removeEventListener("pointerdown",un);},{once:true});
+})();
 go("select");
 
 /* PWA Service Worker Registration */
