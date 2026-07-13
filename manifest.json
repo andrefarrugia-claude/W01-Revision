@@ -1,6 +1,6 @@
 {
-  "name": "Insurance Revision Platform",
-  "short_name": "Insurance",
+  "name": "W01 Revision Platform",
+  "short_name": "W01",
   "description": "W01 Award in General Insurance revision platform: flashcards, quizzes, sorters and printable fact sheets across ten topics.",
   "start_url": "./index.html",
   "scope": "./",
